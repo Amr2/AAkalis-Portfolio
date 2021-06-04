@@ -1,0 +1,129 @@
+:root{
+    --BGC    : #22223a;
+    --SDC    : #53d096;
+    --Fwidth : .3rem
+}
+*{  
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    font-family: "lato";
+}
+
+#Main-cont{
+    display: flex;
+    background-color: var(--BGC);
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    place-content: center;
+    place-items: center;
+}
+
+#Main-header{
+    position: relative;
+    width: fit-content;
+    color:var(--SDC);
+    overflow:hidden;
+    margin: .4rem;
+}
+
+#flasher{
+    position: absolute;
+    top:0%;
+    left: 0%;
+    bottom: 0%;
+    right: 0%;
+}
+#Main-header::after,
+#Main-header::before{
+    position: absolute;
+    top:0%;
+    left: 0%;
+    bottom: 0%;
+    right: 0%;
+    
+}
+#Main-header::before{
+    content: "";
+    width: 100%;
+    background-color: var(--BGC);
+    animation: Toleft 4s steps(36) 500ms forwards ;
+}
+
+#Main-header::after{
+    content: "";
+    width: var(--Fwidth);
+    background-color: var(--SDC);
+    animation: flash 750ms ease infinite , Toleft 4s steps(36) 500ms forwards ;
+}
+
+
+@keyframes Toleft {
+    to {
+        left:100%;
+    }
+}
+
+@keyframes Tolefth {
+    to {
+        left:61%;
+    }
+}
+
+@keyframes Toleftbody {
+    to {
+        left:62%;
+    }
+}
+
+@keyframes flash {
+    from{
+        opacity: 100%;
+    }
+    to{
+        opacity: 10%;
+    }
+}
+
+@media all and (max-width: 552px){
+    #Main-header::after,
+    #Main-header::before{
+        position: absolute;
+        top:0%;
+        left: 0%;
+        bottom: 0%;
+        right: 0%;
+        height: 50%;
+        width: 100%;
+        
+    }
+    #flasher::after,
+    #flasher::before{
+        position: absolute;
+        top:0%;
+        left: 0%;
+        bottom: 0%;
+        right: 0%;
+        width: .3rem;
+        height: 50%;
+        background-color: var(--SDC);
+    }
+    #flasher::after{
+        content: "";
+        top:50%;
+        animation: Tolefth 2.32s steps(21) 4.06s forwards , flash 750ms ease infinite;
+    }
+    #flasher::before{
+        content: "";
+        animation: Toleft 4s steps(36) 500ms forwards , flash 750ms ease infinite;
+        
+    }
+    #Main-header::after{
+        content: "";
+        top:50%;
+        animation: Toleftbody 2.4s steps(22) 4s forwards;
+        background-color: var(--BGC);
+    }
+    
+}
